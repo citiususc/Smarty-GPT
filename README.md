@@ -9,7 +9,7 @@ The current prompt was obtained from a previous study in the field from the Univ
 ## Installation and execution (preliminary, not definitive)
 
 ```bash
-$ git clone git@github.com:citiususc/openai-medical-wrapper.git
+$ git clone git@github.com:citiususc/gpt-3-medical-wrapper.git
 
 $ pip install -r requirements.txt
 
