@@ -1,25 +1,43 @@
-# Prompt engineering for Medical GPT-3
+# Smarty-GPT: library of prompts/contexts
 
-This is a simple medical wrapper that introduces a complex context to each question submitted to Open AI API. The main goal is to enhance the accuracy obtained in medical domain answers. We have tested its performance in a thorough experimentation (**coming soon**).
+This is a simple wrapper that introduces any imaginable complex context to each question submitted to Open AI API. The main goal is to enhance the accuracy obtained in its answers **in a transparent way to end users**. 
 
-## Prompt
+This ida arose in the context of a health-related experiment lead by CiTIUS.(**more coming soon**).
 
-The current prompt was obtained from a previous study in the field from the University of Waterloo (Pradeep et al. 2022) and slightly modified.
+## Contexts / Prompts
 
-## Installation and execution (preliminary, not definitive)
+The current prompts give extra context to the GPT model and allow them to answer as a *doctor*, *programmer*, or *lawyer*. The end user only needs to select the desired context and they can directly *ask the question as they will do with a normal search engine*!
+
+Example:
+
+```bash
+$ python smarty-gpt.py "Will wearing an ankle brace help heal an ankle fracture?" "doctor" "xxxxxxxxxxxxxxxxx"
+Smarty-GPT says:
+No. Wearing an ankle brace may help to provide support and stability to the ankle while it is healing, but it will not directly help to heal the fracture.
+```
+
+or 
+
+```bash
+$ python smarty-gpt.py "When do I need a solicitor?" "lawyer" "xxxxxxxxxxxxxxxxxxxxx"
+Smarty-GPT says:
+It depends on the situation. Generally, you should consult a solicitor if you are involved in a legal dispute, need advice on a legal matter, or need help drafting a legal document. You may also need a solicitor if you are buying or selling a property, making a will, or dealing with a family law matter.
+```
+
+## Installation and execution (**in progress, not definitive**)
 
 ```bash
 $ git clone git@github.com:citiususc/gpt-3-medical-wrapper.git
 
 $ pip install -r requirements.txt
 
-[for the moment] $ python wrapper.py arg1 arg2
+[for the moment] $ python smarty-gpt.py query [doctor|lawyer|programmer] key
 ```
 
-*Example*:
+## Prompts / Contexts
 
-```bash
-python wrapper.py "Can you get addicted to weed?" "sk-xxxxxxxxxxxx"
-```
+More prompts are about to come! (Jailbreaks, etc.). Feel free to make a PR or to contact me at marcosfernandez.pichel@usc.es
+
+
 
 ## Pypi (in progress)
