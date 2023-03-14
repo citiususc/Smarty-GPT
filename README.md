@@ -11,7 +11,7 @@ The current prompts give extra context to the GPT model and allow them to answer
 ## Installation
 
 ```bash
-$ python setup.py install
+$ pip install smarty-gpt==1.0.1
 ```
 ## Example
 
@@ -24,7 +24,3 @@ wrapper.wrapper("Can ibuprofen worsen COVID-19?", "INSERT-YOUR-OPENAI-KEY-HERE",
 ## Prompts / Contexts
 
 More prompts are about to come! (Jailbreaks, etc.). Feel free to make a PR or to contact me at marcosfernandez.pichel@usc.es
-
-
-
-## **SOON INSTALLABLE THROUGH PIP**
