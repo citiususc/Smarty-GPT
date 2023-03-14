@@ -2,7 +2,7 @@
 
 This is a simple wrapper that introduces any imaginable complex context to each question submitted to Open AI API. The main goal is to enhance the accuracy obtained in its answers **in a transparent way to end users**. 
 
-This ida arose in the context of a health-related experiment lead by CiTIUS.(**more coming soon**).
+This idea arose in the context of a health-related experiment lead by CiTIUS.(**more coming soon**).
 
 ## Contexts / Prompts
 
