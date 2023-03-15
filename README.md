@@ -1,4 +1,5 @@
-# Smarty-GPT: library of prompts/contexts (**connected with Awesome Prompts Chat GPT**)
+# Smarty-GPT: 
+## library of prompts/contexts (**connected with Awesome Prompts Chat GPT**)
 
 This is a simple wrapper that introduces any imaginable complex context to each question submitted to Open AI API. The main goal is to enhance the accuracy obtained in its answers in a **TRANSPARENT** way to end users. 
 
