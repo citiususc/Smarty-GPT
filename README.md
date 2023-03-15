@@ -23,7 +23,6 @@ $ pip install smarty-gpt==1.0.1
 from smartygpt import Wrapper
 wrapper = Wrapper()
 wrapper.wrapper("Can ibuprofen worsen COVID-19?", "INSERT-YOUR-OPENAI-KEY-HERE", "doctor")
-wrapper.wrapper("Describe the attack of Pearl Harbor.", "INSERT-YOUR-OPENAI-KEY-HERE", "custom-perplexity")
 ```
 
 ## Prompts / Contexts
