@@ -1,4 +1,4 @@
-# Smarty-GPT: library of prompts/contexts (**NEW VERSION**)
+# Smarty-GPT: wrapper of prompts/contexts 
 
 This is a simple wrapper that introduces any imaginable complex context to each question submitted to Open AI API. The main goal is to enhance the accuracy obtained in its answers in a **TRANSPARENT** way to end users. 
 
@@ -6,26 +6,27 @@ This idea arose in the context of a health-related experiment lead by CiTIUS.(**
 
 ## Contexts / Prompts
 
-The current prompts give extra context to the GPT model and allow them to answer as a *doctor*, *programmer*, or *lawyer*. The end user only needs to select the desired context and they can directly *ask the question as they will do with a normal search engine*! More manual prompts are welcomed!
+We support three type of prompts from the moment:
 
-We have also connected this tool with the [Awesome ChatGPT Prompts dataset](https://huggingface.co/datasets/fka/awesome-chatgpt-prompts) and [repo](https://github.com/f/awesome-chatgpt-prompts) from Fatih Kadir Akın. 
+- **Manual prompts**: these prompts are hard-coded and were the first included in this project.
+- [**Awesome Chat GPT prompts**](https://github.com/f/awesome-chatgpt-prompts): our system also supports this huge dataset in a transparent manner.
+- **Custom prompts**: any user can add custom prompts through a file.
 
-Our purpose is to connect all this data with the API and make the proccess **fully transparent** to the end user.
-
-## Installation (package not upgraded yet)
+## Installation 
 
 ```bash
-$ pip install smarty-gpt==1.0.1
+$ pip install smarty-gpt==1.0.4
 ```
 ## Example
 
 ```python
 from smartygpt import Wrapper
 wrapper = Wrapper()
-wrapper.wrapper("Can ibuprofen worsen COVID-19?", "INSERT-YOUR-OPENAI-KEY-HERE", "doctor")
-wrapper.wrapper("Describe the attack of Pearl Harbor.", "INSERT-YOUR-OPENAI-KEY-HERE", "custom-perplexity")
+wrapper.wrapper("Can ibuprofen worsen COVID-19?", "INSERT-YOUR-OPENAI-KEY-HERE", "doctor") # manual prompt
+wrapper.wrapper("Describe the attack of Pearl Harbor.", "INSERT-YOUR-OPENAI-KEY-HERE", "custom-perplexity") # custom prompt
+wrapper.wrapper("Rap about Eminem", "INSERT-YOUR-OPENAI-KEY-HERE", "Rapper") # Awesome Chat GPT prompts 
 ```
 
 ## Prompts / Contexts
 
-More prompts are about to come! (Jailbreaks, etc.). Feel free to make a PR or to contact me at marcosfernandez.pichel@usc.es
+More features/models are about to come! Feel free to make a PR, open an issue or to contact me at marcosfernandez.pichel@usc.es
