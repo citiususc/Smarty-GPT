@@ -1,5 +1,4 @@
-# Smarty-GPT: 
-## library of prompts/contexts (**connected with Awesome Prompts Chat GPT**)
+# Smarty-GPT: library of prompts/contexts (**NEW VERSION**)
 
 This is a simple wrapper that introduces any imaginable complex context to each question submitted to Open AI API. The main goal is to enhance the accuracy obtained in its answers in a **TRANSPARENT** way to end users. 
 
@@ -13,10 +12,10 @@ We have also connected this tool with the [Awesome ChatGPT Prompts dataset](http
 
 Our purpose is to connect all this data with the API and make the proccess **fully transparent** to the end user.
 
-## Installation 
+## Installation (package not upgraded yet)
 
 ```bash
-$ pip install smarty-gpt==1.0.3
+$ pip install smarty-gpt==1.0.1
 ```
 ## Example
 
@@ -24,6 +23,7 @@ $ pip install smarty-gpt==1.0.3
 from smartygpt import Wrapper
 wrapper = Wrapper()
 wrapper.wrapper("Can ibuprofen worsen COVID-19?", "INSERT-YOUR-OPENAI-KEY-HERE", "doctor")
+wrapper.wrapper("Describe the attack of Pearl Harbor.", "INSERT-YOUR-OPENAI-KEY-HERE", "custom-perplexity")
 ```
 
 ## Prompts / Contexts
