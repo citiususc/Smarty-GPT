@@ -15,7 +15,7 @@ We support three type of prompts from the moment:
 ## Installation 
 
 ```bash
-$ pip install smarty-gpt==1.0.4
+$ pip install smarty-gpt==1.0.4.1
 ```
 ## Example
 
