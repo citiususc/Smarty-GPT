@@ -15,7 +15,7 @@ We support three type of prompts from the moment:
 ## Installation 
 
 ```bash
-$ pip install smarty-gpt==1.0.4.1
+pip install smarty-gpt==1.0.7
 ```
 ## Example
 
@@ -30,3 +30,7 @@ wrapper.wrapper("Rap about Eminem", "INSERT-YOUR-OPENAI-KEY-HERE", "Rapper") # A
 ## Prompts / Contexts
 
 More features/models are about to come! Feel free to make a PR, open an issue or to contact me at marcosfernandez.pichel@usc.es
+
+## Disclaimer 
+
+The software is provided "as is" and "with all faults" without warranties of any kind, either express or implied, including, but not limited to, the implied warranties of merchantability, fitness for a particular purpose and non-infringement. No warranty is provided that the software will be free from defects or that operation of the software will be uninterrupted. Your use of the software and any other material or services downloaded or made available to you through the software is at your own discretion and risk, and you are solely responsible for any potential damage resulting from their use.
