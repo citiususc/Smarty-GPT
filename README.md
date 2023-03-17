@@ -4,6 +4,18 @@ This is a simple wrapper that introduces any imaginable complex context to each 
 
 This idea arose in the context of a health-related experiment lead by CiTIUS.(**more coming soon**).
 
+## Installation 
+
+```bash
+pip install smarty-gpt==1.0.7
+```
+
+## Models
+
+- All the **OpenAI** models that the user has access through their API key are supported.
+- Sequence to sequence models like flan-t5 (**more to come**).
+- **TO-DO**: working on the inclusion of GPT-4.
+
 ## Contexts / Prompts
 
 We support three type of prompts from the moment:
@@ -12,11 +24,7 @@ We support three type of prompts from the moment:
 - [**Awesome Chat GPT prompts**](https://github.com/f/awesome-chatgpt-prompts): our system also supports this huge dataset in a transparent manner.
 - **Custom prompts**: any user can add custom prompts through a file.
 
-## Installation 
 
-```bash
-pip install smarty-gpt==1.0.7
-```
 ## Example
 
 ```python
