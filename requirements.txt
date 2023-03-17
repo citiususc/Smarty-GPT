@@ -2,4 +2,4 @@ openai
 argparse
 datasets
 nltk
-git+https://github.com/mmabrouk/chatgpt-wrapper
+requests
