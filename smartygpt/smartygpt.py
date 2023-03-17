@@ -40,6 +40,7 @@ class Wrapper:
             config.set('api.key', key)
             bot = ChatGPT(config)
             _, response, _ = bot.ask(context + " \"" + query+ "\"")
+            
             return response
 
         else: #### Rest of Models
