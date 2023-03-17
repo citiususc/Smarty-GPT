@@ -1,4 +1,4 @@
-# Smarty-GPT(4): wrapper of prompts/contexts (also GPT-4!)
+# Smarty-GPT: wrapper of prompts/contexts
 
 This is a simple wrapper that introduces any imaginable complex context to each question submitted to Open AI API. The main goal is to enhance the accuracy obtained in its answers in a **TRANSPARENT** way to end users. 
 
