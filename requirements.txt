@@ -3,3 +3,5 @@ argparse
 datasets
 nltk
 requests
+transformers
+huggingface-hub==0.0.8

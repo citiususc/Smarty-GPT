@@ -21,6 +21,8 @@ setup(
     install_requires=[
         'openai',
         'requests',
+        'transformers>=2.4.1, < 2.5.0',
+        'dill>=0.3.6',
         'datasets',
         'nltk',
         'argparse'

@@ -2,6 +2,7 @@ import requests
 import argparse
 from nltk import sent_tokenize
 from .contexts import ManualContexts, AwesomePrompts, CustomPrompt
+from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
 
 '''
 This function wraps user's petition question with the adequate context to better orient the response of the language model
@@ -32,11 +33,22 @@ class Wrapper:
             context = AwesomePrompts.dataset.filter(lambda x: x['act']==context)['prompt'][0]
             context = ' '.join(sent_tokenize(context)[:-1])
 
-        url = 'https://api.openai.com/v1/completions'
-        headers = {"Content-Type": "application/json; charset=utf-8", "Authorization":"Bearer "+key}
-        myobj = {'model': model, 'prompt': context + " \"" + query+ "\"", "max_tokens":256, "temperature":0} # temperature is set to 0 by default since we want the most deterministic as possible responses
-                                                                                                                    # max_tokens = 256 because we want a concrete explanation, better if it yes or no
+        ### Models
+        if model=="flant5":
+            model = AutoModelForSeq2SeqLM.from_pretrained("google/flan-t5-small")
+            tokenizer = AutoTokenizer.from_pretrained("google/flan-t5-small")
+            inputs = tokenizer(context + " \"" + query+ "\"", return_tensors="pt")
+            outputs = model.generate(**inputs)
+            response = tokenizer.batch_decode(outputs, skip_special_tokens=True)
+            response = response[0].lower()       
+            return response
 
-        x = requests.post(url, headers =headers, json = myobj)
-        
-        return x.json()['choices'][0]['text']
+        else:
+            url = 'https://api.openai.com/v1/completions'
+            headers = {"Content-Type": "application/json; charset=utf-8", "Authorization":"Bearer "+key}
+            myobj = {'model': model, 'prompt': context + " \"" + query+ "\"", "max_tokens":256, "temperature":0} # temperature is set to 0 by default since we want the most deterministic as possible responses
+                                                                                                                        # max_tokens = 256 because we want a concrete explanation, better if it yes or no
+
+            x = requests.post(url, headers =headers, json = myobj)
+            
+            return x.json()['choices'][0]['text']   
