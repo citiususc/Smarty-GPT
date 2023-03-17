@@ -13,7 +13,7 @@ pip install smarty-gpt==1.0.7
 ## Models
 
 - All the **OpenAI** models that the user has access through their API key are supported.
-- Sequence to sequence models like flan-t5 (**more to come**).
+- Sequence to sequence models like [**FLAN-T5**](https://huggingface.co/google/flan-t5-small) (**more to come**).
 - **TO-DO**: working on the inclusion of GPT-4.
 
 ## Contexts / Prompts
