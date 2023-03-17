@@ -17,9 +17,4 @@ setup(
     license='Apache License (Version 3.0)',
     packages=find_packages(),
     zip_safe=False,
-    python_requires=">=3.6",
-    install_requires=[
-        'openai',
-        'argparse',
-        'datasets'
-    ])
+    python_requires=">=3.6")
