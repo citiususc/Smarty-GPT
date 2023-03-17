@@ -7,7 +7,7 @@ This idea arose in the context of a health-related experiment lead by CiTIUS.(**
 ## Installation 
 
 ```bash
-pip install smarty-gpt==1.0.7
+pip install smarty-gpt==1.0.9
 ```
 
 ## Models
