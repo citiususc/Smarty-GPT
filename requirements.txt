@@ -1,9 +1,10 @@
 openai
 argparse
+multiprocess==0.70.13
 datasets
 nltk
 requests
-transformers
-huggingface-hub==0.0.8
-setuptools_rust
+transformers==4.20.1
+huggingface_hub==0.7.0
 chatGPT
+playwright

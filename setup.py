@@ -20,11 +20,10 @@ setup(
     python_requires=">=3.6",
     install_requires=[
         'openai',
-        'requests',
-        'transformers>=2.4.1, < 2.5.0',
-        'dill>=0.3.6',
+        'argparse',
         'datasets',
         'nltk',
-        'argparse',
-        'chatGPT'
+        'requests',
+        'transformers==4.20.1',
+        'huggingface_hub==0.7.0'
     ])
