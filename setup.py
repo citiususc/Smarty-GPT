@@ -25,5 +25,6 @@ setup(
         'dill>=0.3.6',
         'datasets',
         'nltk',
-        'argparse'
+        'argparse',
+        'chatGPT'
     ])

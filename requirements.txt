@@ -5,3 +5,5 @@ nltk
 requests
 transformers
 huggingface-hub==0.0.8
+setuptools_rust
+chatGPT
