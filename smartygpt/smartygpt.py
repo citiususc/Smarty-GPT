@@ -6,22 +6,21 @@ from .contexts import ManualContexts, AwesomePrompts, CustomPrompt
 from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
 from chatgpt_wrapper import ChatGPT
 from chatgpt_wrapper.config import Config
-from playwright.sync_api import sync_playwright
+import subprocess
+import time
+import signal
+
 
 '''
 This function wraps user's petition question with the adequate context to better orient the response of the language model
 '''
 
 class Wrapper:
-    
-    def run(self, playwright):
-        firefox = playwright.firefox
-        browser = firefox.launch()
-        page = browser.new_page()
-        page.goto("https://chat.openai.com/chat")
-        page.wait_for_selector('div')
 
-    def wrapper(self, query:str, key: str, context:str, model:str="text-davinci-003") -> str:
+    def __init__(self):
+        self.login = None
+
+    def wrapper(self, query:str, context:str, model:str="text-davinci-003", key: str=None) -> str:
         ##### Contexts
         
         contexts = AwesomePrompts.dataset['act']
@@ -55,19 +54,20 @@ class Wrapper:
             return response
 
         elif model=="chatgpt" or model=="gpt4":
-            os.environ["OPENAI_API_KEY"] = key
+            if not self.login: #### Mandatory login from chatgpt-wrapper
+                self.login = subprocess.run(["chatgpt", "install"])
+            
+            print("The response to:", query, "is generating...")
+            if model=="chatgpt":
+                bot = ChatGPT()
+                _, response, _ = bot.ask(context + " \"" + query)
+            elif model=="gpt4":
+                config = Config()
+                config.set('chat.model', 'gpt4')
+                bot = ChatGPT(config)
+                _, response, _ = bot.ask(context + " \"" + query)
 
-            with sync_playwright() as playwright:
-                self.run(playwright)
-                        
-                if model=="gpt4":
-                    config = Config()
-                    config.set('chat.model', 'gpt4')
-                    bot = ChatGPT(config)
-                else:
-                    bot = ChatGPT()
-                _, response, _ = bot.ask(context + " \"" + query+ "\"")
-                return response
+            return response            
             
         else:
             url = 'https://api.openai.com/v1/completions'

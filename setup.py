@@ -21,9 +21,11 @@ setup(
     install_requires=[
         'openai',
         'argparse',
+        'multiprocess==0.70.13',
         'datasets',
         'nltk',
         'requests',
         'transformers==4.20.1',
-        'huggingface_hub==0.7.0'
+        'huggingface_hub==0.7.0',
+        'chatGPT'
     ])
