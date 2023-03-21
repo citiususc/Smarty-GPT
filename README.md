@@ -1,41 +1,46 @@
-# Smarty-GPT: wrapper of prompts/contexts
+# Smarty-GPT: wrapper of prompts/contexts (also ChatGPT and GPT4!)
 
-This is a simple wrapper that introduces any imaginable complex context to each question submitted to Open AI API. The main goal is to enhance the accuracy obtained in its answers in a **TRANSPARENT** way to end users. 
+This is a simple wrapper that introduces any imaginable complex context to each question submitted to a GPT or any other supported LM. The main goal is to enhance the accuracy obtained in its answers in a **TRANSPARENT** way to end users. 
 
 This idea arose in the context of a health-related experiment lead by CiTIUS.(**more coming soon**).
 
 ## Installation 
 
 ```bash
-pip install smarty-gpt==1.0.9
+pip install smarty-gpt==1.1.0
 ```
 
 ## Models
 
-- All the **OpenAI** models that the user has access through their API key are supported.
-- Sequence to sequence models like [**FLAN-T5**](https://huggingface.co/google/flan-t5-small) (**more to come**).
-- **TO-DO**: working on the inclusion of GPT-4.
+- *OpenAI API standard models*: **text-davinci-003**, **code-davinci-002**, **text-davinci-002**, etc.
+- *Hugging Face Language Models*:like [**Flan-T5**](https://huggingface.co/google/flan-t5-small) powered by Google.
+- *For ChatGPT Plus suscriptors*: **ChatGPT** and **GPT4** integration thanks to previous [projects](https://github.com/mmabrouk/chatgpt-wrapper).
 
 ## Contexts / Prompts
 
 We support three type of prompts from the moment:
 
 - **Manual prompts**: these prompts are hard-coded and were the first included in this project.
-- [**Awesome Chat GPT prompts**](https://github.com/f/awesome-chatgpt-prompts): our system also supports this huge dataset in a transparent manner.
+- [**Awesome Chat GPT prompts**](https://github.com/f/awesome-chatgpt-prompts): our system also supports this huge HF dataset in a transparent manner.
 - **Custom prompts**: any user can add custom prompts through a file.
 
-
-## Example
+## Coding examples
 
 ```python
 from smartygpt import Wrapper
 wrapper = Wrapper()
-wrapper.wrapper("Can ibuprofen worsen COVID-19?", "INSERT-YOUR-OPENAI-KEY-HERE", "doctor") # manual prompt
-wrapper.wrapper("Describe the attack of Pearl Harbor.", "INSERT-YOUR-OPENAI-KEY-HERE", "custom-perplexity") # custom prompt
-wrapper.wrapper("Rap about Eminem", "INSERT-YOUR-OPENAI-KEY-HERE", "Rapper") # Awesome Chat GPT prompts 
+wrapper.wrapper("Can ibuprofen worsen COVID-19?", "doctor", "text-davinci-003", "INSERT-YOUR-OPENAI-KEY-HERE") # manual prompt
+wrapper.wrapper("Describe the attack of Pearl Harbor.", "custom-perplexity", "flant5") # custom prompt
+wrapper.wrapper("Rap about Eminem", "Rapper", "chatgpt") # Awesome Chat GPT prompts 
+wrapper.wrapper("Debate about the meaning of life", "Philosopher", "gpt4") # Awesome Chat GPT prompts 
 ```
+**IMPORTANT!!!**: As it is not yet an official api, the first time "chatgpt" or "gpt4" models are called, a browser opens and asks for our *plus subscriber* credentials. Once logged in, we can close the generated prompt and the model will automatically respond and not ask for the credentials in the rest of the session.
 
-## Prompts / Contexts
+## Purpose of the project
+
+The main purpose of this project is **joining** in a single environment all the resources (models, prompts, APIs, etc.) related to LLMs. Moreover, we also think from an **end-user** perspective. It is heavily unlikely that a user would introduce a complex context in a query to a model or searcher. In this project, we try to bias the different model responses to answer in different ways/behaviors, but hidding this to end-users.
+
+## In progress
 
 More features/models are about to come! Feel free to make a PR, open an issue or to contact me at marcosfernandez.pichel@usc.es
 
