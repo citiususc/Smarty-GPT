@@ -2,7 +2,6 @@
 
 This is a simple wrapper that introduces any imaginable complex context to each question submitted to a GPT or any other supported LM. The main goal is to enhance the accuracy obtained in its answers in a **TRANSPARENT** way to end users. 
 
-This idea arose in the context of a health-related experiment lead by CiTIUS.(**more coming soon**).
 
 ## Installation 
 
