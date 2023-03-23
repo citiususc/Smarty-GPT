@@ -22,6 +22,7 @@ We support three type of prompts from the moment:
 - **Manual prompts**: these prompts are hard-coded and were the first included in this project.
 - [**Awesome Chat GPT prompts**](https://github.com/f/awesome-chatgpt-prompts): our system also supports this huge HF dataset in a transparent manner.
 - **Custom prompts**: any user can add custom prompts through a file.
+- (In progress) Support for [**awesome-gpt4**](https://github.com/radi-cho/awesome-gpt4) prompts.
 
 ## Coding examples
 
