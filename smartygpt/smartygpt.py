@@ -5,7 +5,7 @@ from nltk import sent_tokenize
 from .contexts import ManualContexts, AwesomePrompts, CustomPrompt
 from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
 from chatgpt_wrapper import ChatGPT
-from chatgpt_wrapper.config import Config
+from chatgpt_wrapper.core.config import Config
 import subprocess
 import time
 import signal
