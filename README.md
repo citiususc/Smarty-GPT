@@ -1,13 +1,19 @@
 # Smarty-GPT: wrapper of prompts/contexts (also ChatGPT and GPT4!)
 
+<p align="center">
+    <a href="https://pepy.tech/project/smarty-gpt/"><img alt="Downloads" src="https://img.shields.io/badge/dynamic/json?style=flat-square&maxAge=3600&label=downloads&query=$.total_downloads&url=https://api.pepy.tech/api/projects/smarty-gpt"></a>
+    <a href="https://pypi.python.org/pypi/smarty-gpt/"><img alt="PyPi" src="https://img.shields.io/pypi/v/smarty-gpt.svg?style=flat-square"></a>
+</p>
+
 This is a simple wrapper that introduces any imaginable complex context to each question submitted to a GPT or any other supported LM. The main goal is to enhance the accuracy obtained in its answers in a **TRANSPARENT** way to end users. 
 
 
 ## Installation 
 
 ```bash
-pip install smarty-gpt==1.1.0
+sh install.sh
 ```
+<a href="https://colab.research.google.com/drive/1172Y7ZhtCgADurysC96V_KFUL2fc8uB3?usp=sharing"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg?style=flat-square"></a>
 
 ## Models
 
