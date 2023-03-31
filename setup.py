@@ -26,5 +26,6 @@ setup(
         'nltk',
         'requests',
         'transformers==4.20.1',
-        'huggingface_hub==0.7.0'
+        'huggingface_hub==0.7.0',
+        'configparser'
     ])

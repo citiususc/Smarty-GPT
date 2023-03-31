@@ -1,80 +1,77 @@
 import requests
-import argparse
-import os 
+import openai
 from nltk import sent_tokenize
-from .contexts import ManualContexts, AwesomePrompts, CustomPrompt
+from .contexts import *
+from .models import Models
 from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
-from chatgpt_wrapper import ChatGPT
-from chatgpt_wrapper.core.config import Config
-import subprocess
-import time
-import signal
+import configparser
 
 
-'''
-This function wraps user's petition question with the adequate context to better orient the response of the language model
-'''
 
-class Wrapper:
+class SmartyGPT:
 
-    def __init__(self):
-        self.login = None
-
-    def wrapper(self, query:str, context:str, model:str="text-davinci-003", key: str=None) -> str:
-        ##### Contexts
-        
-        contexts = AwesomePrompts.dataset['act']
-        contexts.extend(["doctor", "lawyer", "programmer", "sick"])
-        contexts.extend(CustomPrompt.available_prompts)
-        if not any(context==x for x in contexts):
-            raise Exception("Sorry, that context is not implemented yet")
-        if context=="doctor":
-            context = ManualContexts.DoctorAdvice
-        elif context=="lawyer":
-            context = ManualContexts.Lawyer
-        elif context=="programmer":
-            context = ManualContexts.Programmer
-        elif context=="sick":
-            context = ManualContexts.SickAdvice
-        elif context.startswith('custom-'):
-            custom_name = context[len('custom-'):]
-            context = CustomPrompt(custom_name).prompt
-        else:
-            context = AwesomePrompts.dataset.filter(lambda x: x['act']==context)['prompt'][0]
+    def __init__(self, model=Models.GPT3, prompt=ManualContexts.DoctorAdvice):
+        self.model = model
+        config = configparser.RawConfigParser()
+        config.read('~/config.txt')
+        config_details = config.get_config_dict()
+        self.api_key = config_details['API_KEY'] 
+        if isinstance(prompt, ManualContexts):
+            self.prompt = prompt   
+        elif isinstance(prompt, AwesomePrompts):
+            context = AwesomePrompts.dataset.filter(lambda x: x['act']==prompt)['prompt'][0]
             context = ' '.join(sent_tokenize(context)[:-1])
+            self.prompt = context
+        else:
+            custom_name = prompt[len('custom-'):]
+            context = CustomPrompt(custom_name).prompt
+            self.prompt = context
+
+    def change_context(prompt):
+        self.prompt = prompt
+    
+    def get_context(prompt):
+        return self.prompt
+
+    '''
+    This function wraps user's petition question with the adequate context 
+    to better orient the response of the language model
+    '''
+    def wrapper(self, query:str) -> str:
 
         ### Models
-        if model=="flant5":
-            model = AutoModelForSeq2SeqLM.from_pretrained("google/flan-t5-small")
-            tokenizer = AutoTokenizer.from_pretrained("google/flan-t5-small")
-            inputs = tokenizer(context + " \"" + query+ "\"", return_tensors="pt")
+        if self.model==Models.FlanT5:
+            model = AutoModelForSeq2SeqLM.from_pretrained(Models.FlanT5)
+            tokenizer = AutoTokenizer.from_pretrained(Models.FlanT5)
+            inputs = tokenizer(self.prompt + " \"" + query+ "\"", return_tensors="pt")
             outputs = model.generate(**inputs)
             response = tokenizer.batch_decode(outputs, skip_special_tokens=True)
             response = response[0].lower()       
             return response
 
-        elif model=="chatgpt" or model=="gpt4":
-            if not self.login: #### Mandatory login from chatgpt-wrapper
-                self.login = subprocess.run(["chatgpt", "install"])
-            
-            print("The response to:", query, "is generating...")
-            if model=="chatgpt":
-                bot = ChatGPT()
-                _, response, _ = bot.ask(context + " \"" + query)
-            elif model=="gpt4":
-                config = Config()
-                config.set('chat.model', 'gpt4')
-                bot = ChatGPT(config)
-                _, response, _ = bot.ask(context + " \"" + query)
-
+        elif self.model==Models.GPT3:
+            openai.api_key= self.api_key
+            response = openai.Completion.create(
+                engine=self.model,
+                prompt=self.prompt + query,
+                temperature=0,
+                max_tokens=256,
+                top_p=1.0,
+                frequency_penalty=0.0,
+                presence_penalty=0.0
+            )
+            response = response['choices'][0]['text']+'\n'
+            response = response.lower()
             return response            
             
-        else:
-            url = 'https://api.openai.com/v1/completions'
-            headers = {"Content-Type": "application/json; charset=utf-8", "Authorization":"Bearer "+key}
-            myobj = {'model': model, 'prompt': context + " \"" + query+ "\"", "max_tokens":256, "temperature":0} # temperature is set to 0 by default since we want the most deterministic as possible responses
-                                                                                                                        # max_tokens = 256 because we want a concrete explanation, better if it yes or no
-
-            x = requests.post(url, headers =headers, json = myobj)
-            
-            return x.json()['choices'][0]['text']   
+        elif self.model==Models.ChatGPT or self.model==Models.GPT4:
+            openai.api_key=self.api_key
+            response = openai.ChatCompletion.create(
+            model=self.model,
+            messages=[
+                {"role": "system", "content": "You are a chatbot"},
+                {"role": "user", "content": self.prompt+query},
+            ]
+            )
+            response = response['choices'][0]['text']+'\n'
+            return response
