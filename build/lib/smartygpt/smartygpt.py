@@ -10,10 +10,10 @@ import configparser
 
 class SmartyGPT:
 
-    def __init__(self, model=Models.GPT3, prompt=ManualContexts.DoctorAdvice, path='~'):
+    def __init__(self, model=Models.GPT3, prompt=ManualContexts.DoctorAdvice):
         self.model = model
         config = configparser.ConfigParser()
-        config.read(path+'/config.ini')
+        config.read('~/config.ini')
         self.api_key = config['login']['API_KEY'] 
         if isinstance(prompt, ManualContexts):
             self.prompt = prompt   

@@ -1,0 +1,11 @@
+Metadata-Version: 1.2
+Name: smarty-gpt
+Version: 1.1.4
+Summary: A library of prompts/contexts that allows to enhance GPT models responses without the involvement of the user
+Home-page: https://github.com/citiususc/Smarty-GPT
+Author: Marcos Fernández-Pichel
+Author-email: marcosfernandez.pichel@usc.es
+License: Apache License (Version 3.0)
+Description: UNKNOWN
+Platform: UNKNOWN
+Requires-Python: >=3.6
