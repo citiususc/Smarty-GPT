@@ -3,7 +3,10 @@
 import os
 from datasets import load_dataset
 
-CURRENT_DIR = os.path.dirname(__file__)
+def available_contexts():
+    print("-> Manually introduced:", list(ManualContexts.__dict__.keys())[1:][:-3])
+    print("-> Awesome Prompts library:", AwesomePrompts.dataset['act'])
+    print("-> Plus custom prompts introduced by file...")
 
 class ManualContexts:
     DoctorAdvice = "We are a committee of leading scientific experts and medical doctors reviewing the latest and highest quality of research from PubMED."\
@@ -19,11 +22,9 @@ class AwesomePrompts: ##### We have included here the collection of prompts from
    dataset = data["train"]
 
 class CustomPrompt:
-    base_path = os.path.join(CURRENT_DIR, '..', 'custom_prompts')
-    available_prompts = ['custom-{}'.format(p) for p in os.listdir(base_path)]
 
-    def __init__(self, name):
-        with open(os.path.join(self.base_path, name), 'r') as f:
+    def __init__(self, path, name):
+        with open(os.path.join(path+'custom_prompts/', name), 'r') as f:
             prompt_text = f.read().strip()
         
         self.prompt = prompt_text

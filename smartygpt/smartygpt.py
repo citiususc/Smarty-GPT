@@ -10,26 +10,25 @@ import configparser
 
 class SmartyGPT:
 
-    def __init__(self, model=Models.GPT3, prompt=ManualContexts.DoctorAdvice, path='~'):
+    def __init__(self, model=Models.GPT3, prompt="Rapper", path=''):
         self.model = model
         config = configparser.ConfigParser()
-        config.read(path+'/config.ini')
-        self.api_key = config['login']['API_KEY'] 
-        if isinstance(prompt, ManualContexts):
-            self.prompt = prompt   
-        elif isinstance(prompt, AwesomePrompts):
+        config.read(path+'config.txt')
+        self.api_key = config['auth']['api_key'] 
+        if prompt in list(ManualContexts.__dict__.keys()):
+            self.prompt = ManualContexts.__dict__[prompt]   
+        elif prompt in AwesomePrompts.dataset['act']:
             context = AwesomePrompts.dataset.filter(lambda x: x['act']==prompt)['prompt'][0]
             context = ' '.join(sent_tokenize(context)[:-1])
             self.prompt = context
         else:
-            custom_name = prompt[len('custom-'):]
-            context = CustomPrompt(custom_name).prompt
-            self.prompt = context
+            self.prompt = CustomPrompt(path, prompt).prompt
+            print(self.prompt)
 
-    def change_context(prompt):
+    def change_context(self,prompt):
         self.prompt = prompt
     
-    def get_context(prompt):
+    def get_context(self):
         return self.prompt
 
     '''
@@ -52,7 +51,7 @@ class SmartyGPT:
             openai.api_key= self.api_key
             response = openai.Completion.create(
                 engine=self.model,
-                prompt=self.prompt + query,
+                prompt=self.prompt +'\n'+ query,
                 temperature=0,
                 max_tokens=256,
                 top_p=1.0,
@@ -66,11 +65,11 @@ class SmartyGPT:
         elif self.model==Models.ChatGPT or self.model==Models.GPT4:
             openai.api_key=self.api_key
             response = openai.ChatCompletion.create(
-            model=self.model,
-            messages=[
-                {"role": "system", "content": "You are a chatbot"},
-                {"role": "user", "content": self.prompt+query},
-            ]
+                model=self.model,
+                messages=[
+                    {"role": "system", "content": "You are a chatbot"},
+                    {"role": "user", "content": self.prompt+'\n'+query},
+                ]
             )
-            response = response['choices'][0]['text']+'\n'
-            return response
+            reply = response["choices"][0]["message"]["content"]
+            return reply

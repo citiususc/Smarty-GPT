@@ -9,7 +9,7 @@ setup(
     name='smarty-gpt',
     version=smartygpt.__version__,
     description=(
-        'A library of prompts/contexts that allows to enhance GPT models responses without the involvement of the user'
+        'A wrapper of LLMs that biases its behaviour using prompts and contexts in a transparent manner to the end-users'
     ),
     url='https://github.com/citiususc/Smarty-GPT',
     author='Marcos Fernández-Pichel',
