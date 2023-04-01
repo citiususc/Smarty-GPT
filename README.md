@@ -50,7 +50,7 @@ if __name__=="__main__":
     print(result)
 ```
 
-Check the [**Colab**](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/citiususc/Smarty-GPT/blob/master/Demo.ipynb) or test folder for more examples and functionalities
+Check the [**Colab**](https://colab.research.google.com/github/citiususc/Smarty-GPT/blob/master/Demo.ipynb) or test folder for more examples and functionalities
 
 ## Philosophy
 
