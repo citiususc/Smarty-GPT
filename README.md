@@ -13,7 +13,7 @@ A wrapper of LLMs that biases its behaviour using prompts and contexts in a **tr
 ```bash
 sh install.sh
 ```
-<a href="https://colab.research.google.com/drive/1172Y7ZhtCgADurysC96V_KFUL2fc8uB3?usp=sharing#scrollTo=XH28x2jWQ0OU"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg?style=flat-square"></a>
+<a href="https://colab.research.google.com/drive/1hHL07ElLw-ECgBCoi-ZdcKdC23OR1d4T"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg?style=flat-square"></a>
 
 ## Models
 
@@ -50,7 +50,7 @@ if __name__=="__main__":
     print(result)
 ```
 
-Check the [**Colab**](https://colab.research.google.com/drive/1172Y7ZhtCgADurysC96V_KFUL2fc8uB3?usp=sharing#scrollTo=XH28x2jWQ0OU) or test folder for more examples and functionalities
+Check the [**Colab**](https://colab.research.google.com/drive/1hHL07ElLw-ECgBCoi-ZdcKdC23OR1d4T) or test folder for more examples and functionalities
 
 ## Philosophy
 
