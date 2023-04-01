@@ -1,12 +1,12 @@
-# Smarty-GPT: wrapper of prompts/contexts (also ChatGPT and GPT4!)
+# Smarty-GPT
+## A wrapper of LLMs (chatgpt, gpt4, etc.) that biases its behaviour using prompts
 
 <p align="center">
     <a href="https://pepy.tech/project/smarty-gpt/"><img alt="Downloads" src="https://img.shields.io/badge/dynamic/json?style=flat-square&maxAge=3600&label=downloads&query=$.total_downloads&url=https://api.pepy.tech/api/projects/smarty-gpt"></a>
     <a href="https://pypi.python.org/pypi/smarty-gpt/"><img alt="PyPi" src="https://img.shields.io/pypi/v/smarty-gpt.svg?style=flat-square"></a>
 </p>
 
-This is a simple wrapper that introduces any imaginable complex context to each question submitted to a GPT or any other supported LM. The main goal is to enhance the accuracy obtained in its answers in a **TRANSPARENT** way to end users. 
-
+A wrapper of LLMs that biases its behaviour using prompts and contexts in a **transparent** manner to the end-users.
 
 ## Installation 
 
@@ -17,9 +17,9 @@ sh install.sh
 
 ## Models
 
-- *OpenAI API standard models*: **text-davinci-003**, **code-davinci-002**, **text-davinci-002**, etc.
-- *Hugging Face Language Models*:like [**Flan-T5**](https://huggingface.co/google/flan-t5-small) powered by Google.
-- *For ChatGPT Plus suscriptors*: **ChatGPT** and **GPT4** integration thanks to previous [projects](https://github.com/mmabrouk/chatgpt-wrapper).
+- **text-davinci-003**
+- [**Flan-T5**](https://huggingface.co/google/flan-t5-small) powered by Google.
+- **ChatGPT** and **GPT4** through paid API.
 
 ## Contexts / Prompts
 
@@ -30,21 +30,33 @@ We support three type of prompts from the moment:
 - **Custom prompts**: any user can add custom prompts through a file.
 - (In progress) Support for [**awesome-gpt4**](https://github.com/radi-cho/awesome-gpt4) prompts.
 
+
+## Authentication
+
+Users should create a *config.txt* file like the following to read Open AI bearer:
+
+```txt
+[auth]
+api_key = xxxxxxxxxxxxxxxxxx
+```
+
 ## Coding examples
 
 ```python
-from smartygpt import Wrapper
-wrapper = Wrapper()
-wrapper.wrapper("Can ibuprofen worsen COVID-19?", "doctor", "text-davinci-003", "INSERT-YOUR-OPENAI-KEY-HERE") # manual prompt
-wrapper.wrapper("Describe the attack of Pearl Harbor.", "custom-perplexity", "flant5") # custom prompt
-wrapper.wrapper("Rap about Eminem", "Rapper", "chatgpt") # Awesome Chat GPT prompts 
-wrapper.wrapper("Debate about the meaning of life", "Philosopher", "gpt4") # Awesome Chat GPT prompts 
+from smartygpt import SmartyGPT, Models
+if __name__=="__main__":
+    s = SmartyGPT(prompt="DoctorAdvice", path="/home/user/") 
+    result = s.wrapper("Can Vitamin D cure COVID-19?")
+    print(result)
 ```
-**IMPORTANT!!!**: As it is not yet an official api, the first time "chatgpt" or "gpt4" models are called, a browser opens and asks for our *plus subscriber* credentials. Once logged in, we can close the generated prompt and the model will automatically respond and not ask for the credentials in the rest of the session.
 
-## Purpose of the project
+Check the [**Colab**](https://colab.research.google.com/drive/1172Y7ZhtCgADurysC96V_KFUL2fc8uB3?usp=sharing) or test folder for more examples and functionalities
 
-The main purpose of this project is **joining** in a single environment all the resources (models, prompts, APIs, etc.) related to LLMs. Moreover, we also think from an **end-user** perspective. It is heavily unlikely that a user would introduce a complex context in a query to a model or searcher. In this project, we try to bias the different model responses to answer in different ways/behaviors, but hidding this to end-users.
+## Philosophy
+
+The main purpose of this project is **joining** in a single environment all the resources (models, prompts, APIs, etc.) related to LLMs. 
+
+Moreover, we also think from an **end-user** perspective. It is heavily unlikely that a user would introduce a complex context in a query to bias a model response. This library tries to solve this hidding the implementation details to end-users.
 
 ## In progress
 
