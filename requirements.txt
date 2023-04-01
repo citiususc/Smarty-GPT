@@ -1,4 +1,5 @@
 openai
+torch
 argparse
 multiprocess==0.70.13
 datasets
