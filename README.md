@@ -13,7 +13,9 @@ A wrapper of LLMs that biases its behaviour using prompts and contexts in a **tr
 ```bash
 sh install.sh
 ```
+
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/citiususc/Smarty-GPT/HEAD?labpath=Demo.ipynb) [![Google Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/citiususc/Smarty-GPT/blob/master/Demo.ipynb) [![GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new?hide_repo_select=true&ref=main&repo=citiususc/Smarty-GPT&machine=basicLinux32gb&location=WestEurope)
+
 
 ## Models
 
@@ -49,6 +51,7 @@ if __name__=="__main__":
     result = s.wrapper("Can Vitamin D cure COVID-19?")
     print(result)
 ```
+
 
 Check the [**Colab**](https://colab.research.google.com/github/citiususc/Smarty-GPT/blob/master/Demo.ipynb) or test folder for more examples and functionalities
 
