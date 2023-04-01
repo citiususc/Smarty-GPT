@@ -24,7 +24,7 @@ class AwesomePrompts: ##### We have included here the collection of prompts from
 class CustomPrompt:
 
     def __init__(self, path, name):
-        with open(os.path.join(path+'custom_prompts/', name), 'r') as f:
+        with open(os.path.join(path, name), 'r') as f:
             prompt_text = f.read().strip()
         
         self.prompt = prompt_text

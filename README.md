@@ -13,7 +13,9 @@ A wrapper of LLMs that biases its behaviour using prompts and contexts in a **tr
 ```bash
 sh install.sh
 ```
-<a href="https://colab.research.google.com/drive/1hHL07ElLw-ECgBCoi-ZdcKdC23OR1d4T?usp=sharing"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg?style=flat-square"></a>
+
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/citiususc/Smarty-GPT/HEAD?labpath=Demo.ipynb) [![Google Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/citiususc/Smarty-GPT/blob/master/Demo.ipynb) [![GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new?hide_repo_select=true&ref=main&repo=citiususc/Smarty-GPT&machine=basicLinux32gb&location=WestEurope)
+
 
 ## Models
 
@@ -45,12 +47,13 @@ api_key = xxxxxxxxxxxxxxxxxx
 ```python
 from smartygpt import SmartyGPT, Models
 if __name__=="__main__":
-    s = SmartyGPT(prompt="DoctorAdvice", path="/home/user/") 
+    s = SmartyGPT(prompt="DoctorAdvice", config_file="/home/user/config.txt") 
     result = s.wrapper("Can Vitamin D cure COVID-19?")
     print(result)
 ```
 
-Check the [**Colab**](https://colab.research.google.com/drive/1hHL07ElLw-ECgBCoi-ZdcKdC23OR1d4T?usp=sharing) or test folder for more examples and functionalities
+
+Check the [**Colab**](https://colab.research.google.com/github/citiususc/Smarty-GPT/blob/master/Demo.ipynb) or test folder for more examples and functionalities
 
 ## Philosophy
 

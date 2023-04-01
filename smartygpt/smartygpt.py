@@ -1,3 +1,4 @@
+import os
 import requests
 import openai
 from nltk import sent_tokenize
@@ -10,19 +11,35 @@ import configparser
 
 class SmartyGPT:
 
-    def __init__(self, model=Models.GPT3, prompt="Rapper", path=''):
+    def __init__(self, model=Models.GPT3, prompt="Rapper", config_file=None):
         self.model = model
-        config = configparser.ConfigParser()
-        config.read(path+'config.txt')
-        self.api_key = config['auth']['api_key'] 
+        self.api_key = None
+        self.custom_prompts_path = None  # Will be changed by the path where the config_file lies
+        
+        if config_file is not None and config_file != '':
+            config = configparser.ConfigParser()
+            config.read(config_file)
+            
+            if 'auth' in config:
+                if 'api_key' in config['auth']:
+                    self.api_key = config['auth']['api_key']
+            
+            self.custom_prompts_path = os.path.join(os.path.dirname(config_file), 'custom_prompts')
+        
+        else:
+            # There is no need to raise an error if the api key is not present, as the user may want to use FlanT5
+            self.custom_prompts_path = os.path.join('.', 'custom_prompts')
+        
         if prompt in list(ManualContexts.__dict__.keys()):
-            self.prompt = ManualContexts.__dict__[prompt]   
+            self.prompt = ManualContexts.__dict__[prompt] 
+          
         elif prompt in AwesomePrompts.dataset['act']:
             context = AwesomePrompts.dataset.filter(lambda x: x['act']==prompt)['prompt'][0]
             context = ' '.join(sent_tokenize(context)[:-1])
             self.prompt = context
+        
         else:
-            self.prompt = CustomPrompt(path, prompt).prompt
+            self.prompt = CustomPrompt(self.custom_prompts_path, prompt).prompt
             print(self.prompt)
 
     def change_context(self,prompt):
@@ -73,3 +90,6 @@ class SmartyGPT:
             )
             reply = response["choices"][0]["message"]["content"]
             return reply
+            
+        else:
+            raise ValueError('Unrecognized model {}'.format(self.model))
